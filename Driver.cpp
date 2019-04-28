@@ -4,7 +4,7 @@
 //Wilhelm Muggenburg
 //COSC2030, Fall 2018
 
-
+//Received assistance with Array's and syntax from Jordan P
 
 #include "info.h"
 #include<iostream>
