@@ -20,18 +20,19 @@ int main()
 	//Day and Week Counters
 	int dayInc = 0;
 	int	weekInc = 0;
+	string input;
+	int intput =0;
+	bool exit = false;
 
 	info Days[14];
 	info Weeks[2];
 
-	string input;
-	int intput;
-	bool exit = false;
+
 
 	// 
 	cout << "Please Select an option from the list Provided:"
 		<< "\nEnter a non Negative blood sugar reading to Start recording data"
-		<< "\nEnter D/Day to get the summary of readings for the day (so far)"
+		<< "\nEnter D/Day to get the summary of readings for a day"
 		<< "\nEnter W/Week to get the summary of readings for the week (so far)"
 		<< "\nEnter 'N'/'Next' to go to the next day."
 		<< "\nor Enter 'Q'/'Quit' to exit the program."
@@ -90,17 +91,52 @@ int main()
 			}
 			else
 			{
-				/* This Outputs the Week 2 Data after the 14th day has been completed and the user attempts to Continue to the 
-				next day*/
+				/* This Outputs a message to inform the user that they have entered 2 weeks of data*/
 				
-				cout << "\nThis is now the end of 2 Weeks, now printing week 2 summaries:" << endl;
-			cout << "\nWeekly summary for week two are as follows:"//since counter started at 0, add 1 for outputs
-				<< "\nThe max of the blood sugar readings recorded for this week is " << Weeks[1].retMax()
-				<< "\nThe min of the blood sugar readings recorded for this week is " << Weeks[1].retMin()
-				<< "\nThe total number of valid blood sugar readings recorded for this week is " << Weeks[1].retCount()
-				<< "\nThe sum of all blood sugar readings for this week is " << Weeks[1].retSum() 
-				<< "\nThe average of all blood sugar readings for today is " << Weeks[1].retAv()<< endl;
-				exit = true;
+				cout << "\nThis is now the end of 2 Weeks"<< endl;
+
+					cout << "Please Select an option from the list Provided:"
+						 << "\nEnter D/Day to get the summary of readings for a day"
+						 << "\nEnter W/Week to get the summary of readings for a week"
+						 << "\nor Enter 'Q'/'Quit' to exit the program."
+						 << "\n" << endl;
+
+					while (exit == false)
+					{
+					cin >> input;
+					std::transform(input.begin(), input.end(), input.begin(), ::tolower);
+							if (input == "quit" || input == "q")
+							{
+								exit = true;
+							}
+							
+							if (input == "day" || input == "d")
+							{
+								//report daily summaries
+								cout << "Which Day would you like to view the summaries for? (Please enter a value from 1-14)";
+								cin >> intput;
+
+								cout << "\nDaily Summaries for Day " << intput << " are as follows:" 
+									<< "\nThe max of all blood sugar readings recorded today is " << Days[intput-1].retMax() 
+									<< "\nThe min of all blood sugar readings recorded today is " << Days[intput-1].retMin() 
+									<< "\nThe total number of valid blood sugar readings recorded today is " << Days[intput-1].retCount() 
+									<< "\nThe sum of all blood sugar readings for today is " << Days[intput-1].retSum() 
+									<< "\nThe average of all blood sugar readings for today is " << Days[intput-1].retAv() << endl;
+							}
+
+							if (input == "week" || input == "w")
+							{
+								cout << "Which Week would you like to view the summaries for? (Please enter Either 1 or 2)";
+								cin >> intput;
+								cout << "\nWeekly summaries, so far, for week " << intput << " are as follows:"
+									<< "\nThe max of the blood sugar readings recorded for this week is " << Weeks[intput-1].retMax()
+									<< "\nThe min of the blood sugar readings recorded for this week is " << Weeks[intput-1].retMin()
+									<< "\nThe total number of valid blood sugar readings recorded for this week is " << Weeks[intput-1].retCount()
+									<< "\nThe sum of all blood sugar readings for this week is " << Weeks[intput-1].retSum() 
+									<< "\nThe average of all blood sugar readings for today is " << Weeks[intput-1].retAv()<< endl;
+							}
+					}
+
  /**
  ___________			
 |           |
